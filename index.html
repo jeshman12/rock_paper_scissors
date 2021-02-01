@@ -2,7 +2,7 @@
 <html>
 <head>
 	<style>
-    	.container {
+    	#gameDisplay {
         	display: flex;
             width: 400px;
             height: 100px;
@@ -37,24 +37,60 @@
 <h2 style="text-align:center">My First Web App</h2>
 
 
-<div class="container" id="gameDisplay"></div>
-<button class="playButtonDisplay">Play Game</button>
+<div id="gameDisplay"></div>
+<div id="buttonWrapper"></div>
+
 
 <script>
-document.getElementById("gameDisplay").innerHTML = mainPage();
+document.getElementById("gameDisplay").innerHTML = userPlay();
 
 
 
 function mainPage() {
+	let buttoncode = '<button class="playButtonDisplay" ' + 'onclick="initpage()" >' + 'Play Game</button>';
+    document.getElementById("buttonWrapper").innerHTML = buttoncode;
 	let greeting =  "Let's play Rock, Paper, Scissors!";
     return greeting;
 }
 
-function testing() {
-	let answerX = prompt("What is your first number? >", 1);
-	let answerY = prompt("What is your second number? >", 2);
-	let total = Number(answerX) + Number(answerY);
-    return total;
+function initpage() {
+	document.getElementById("gameDisplay").innerHTML = testing();
+}
+
+function userPlay() {
+	let userturn = prompt("Rock, Paper, or Scissors?");
+	if (userturn == "rock") {
+    	return 1;
+    }
+    else if (userturn == "paper") {
+    	return 2;
+    }
+    else if (userturn == "scissors") {
+    	return 3;
+    }
+
+}
+
+function getRandomInt() {
+  min = Math.ceil(1);
+  max = Math.floor(4);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+function computerPlay() {
+	let turn = String(getRandomInt());
+    if (turn == "1") {
+    	let rock = "Computer has Rock";
+    	return rock;
+    }
+    else if (turn == "2") {
+    	let paper = "Computer has Paper";
+        return paper;
+    }
+    else if (turn == "3") {
+    	let scissors = "Computer has Scissors"
+        return scissors;
+    }
 }
 
 
